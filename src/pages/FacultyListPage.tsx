@@ -234,9 +234,20 @@ const FacultyListPage: React.FC = () => {
   useEffect(() => { fetchFaculty(); }, []);                                           // eslint-disable-line
   useEffect(() => { if (!criteriaVisible) fetchFaculty(); }, [sdgFilter, domainFilter, timeframe, departmentFilter]); // eslint-disable-line
 
-  // Fetch available domains when department changes (only for C.Tech)
+  // Initialize departmentFilter for HOD users (non-admin)
+  // This ensures HOD users have their department pre-selected to trigger domain filtering
   useEffect(() => {
-    if (departmentFilter !== "C.Tech") {
+    if (!ready) return; // Wait for filter state to hydrate from storage
+    if (!user || !isHoD() || isAdmin()) return; // Only for HOD (non-admin) users
+    if (departmentFilter !== "all") return; // Only if department filter is still at default
+    if (user.department) {
+      setDepartmentFilter(user.department);
+    }
+  }, [ready, user, isHoD, isAdmin, departmentFilter, setDepartmentFilter]);
+
+  // Fetch available domains when department changes
+  useEffect(() => {
+    if (departmentFilter === "all") {
       setAvailableDomains([]);
       // DO NOT reset domainFilter here — it wipes the restored value on remount
       return;
@@ -245,7 +256,7 @@ const FacultyListPage: React.FC = () => {
     const fetchAvailableDomains = async () => {
       try {
         const headers = getAuthHeaders();
-        const url = `https://srm-sp-production.up.railway.app/api/faculty/available-domains?department=${encodeURIComponent(departmentFilter)}`;
+          const url = `https://srm-sp-production.up.railway.app/api/faculty/available-domains?department=${encodeURIComponent(departmentFilter)}`;
         const response = await axios.get(url, { headers });
         if (response.data.success) {
           setAvailableDomains(response.data.data || []);
@@ -283,7 +294,7 @@ const FacultyListPage: React.FC = () => {
       if (domainFilter !== "none") params.domain = domainFilter;
       if (timeframe    !== "none") params.year   = timeframe;
       const headers = getAuthHeaders();
-      if (isAdmin() && departmentFilter && departmentFilter !== "all") params.department = departmentFilter;
+      if ((isAdmin() || isHoD()) && departmentFilter && departmentFilter !== "all") params.department = departmentFilter;
 
       const response = await axios.get("https://srm-sp-production.up.railway.app/api/faculty", { params, headers });
       const depts = Array.from(
@@ -329,7 +340,7 @@ const FacultyListPage: React.FC = () => {
       if (criteriaEnd)          params.end    = criteriaEnd;
       if (criteriaPapers > 0)   params.papers = criteriaPapers;
       const headers = getAuthHeaders();
-      if (isAdmin() && departmentFilter && departmentFilter !== "all") params.department = departmentFilter;
+      if ((isAdmin() || isHoD()) && departmentFilter && departmentFilter !== "all") params.department = departmentFilter;
       const response = await axios.get("https://srm-sp-production.up.railway.app/api/faculty/criteria-filter", { params, headers });
       const updated: Faculty[] = response.data
         .map((m: Faculty) => ({ ...m, docs_in_timeframe: m.timeframe_docs }))
@@ -356,7 +367,7 @@ const FacultyListPage: React.FC = () => {
     try {
       const headers = getAuthHeaders();
       const params: Record<string, string> = {};
-      if (isAdmin() && departmentFilter && departmentFilter !== "all") params.department = departmentFilter;
+      if ((isAdmin() || isHoD()) && departmentFilter && departmentFilter !== "all") params.department = departmentFilter;
       const response = await axios.get(
         `https://srm-sp-production.up.railway.app/api/faculty/papers?timeframe=${selectedTimeframe}`,
         { headers, params }
@@ -392,7 +403,7 @@ const FacultyListPage: React.FC = () => {
     let list = baseList ?? currentFaculty;
     if (sdgFilter    !== "none") list = list.filter(f => f.sdg    && f.sdg.toLowerCase().includes(sdgFilter.toLowerCase()));
     if (domainFilter !== "none") list = list.filter(f => f.domain && f.domain.toLowerCase().includes(domainFilter.toLowerCase()));
-    if (isAdmin() && departmentFilter !== "all") list = list.filter(f => f.department === departmentFilter);
+    if ((isAdmin() || isHoD()) && departmentFilter !== "all") list = list.filter(f => f.department === departmentFilter);
     setFilteredFaculty(list);
   };
 
@@ -490,7 +501,7 @@ const FacultyListPage: React.FC = () => {
         if (sdgFilter    !== "none") activeFilters.push(`SDG: ${sdgFilter}`);
         if (domainFilter !== "none") activeFilters.push(`Domain: ${domainFilter}`);
       }
-      if (isAdmin() && departmentFilter !== "all") activeFilters.push(`Department: ${departmentFilter}`);
+      if ((isAdmin() || isHoD()) && departmentFilter !== "all") activeFilters.push(`Department: ${departmentFilter}`);
       if (searchQuery.trim())    activeFilters.push(`Search: "${searchQuery.trim()}"`);
       if (criteriaVisible && criteriaPapers > 0) activeFilters.push(`Min Papers: ${criteriaPapers}`);
 
@@ -721,7 +732,7 @@ const FacultyListPage: React.FC = () => {
     setPapersLoading(true);
     try {
       const params = new URLSearchParams();
-      if (isAdmin() && departmentFilter !== "all") params.append("department", departmentFilter);
+      if ((isAdmin() || isHoD()) && departmentFilter !== "all") params.append("department", departmentFilter);
       if (timeframe !== "none") params.append("year", timeframe);
       const headers  = getAuthHeaders();
       const response = await axios.get(
@@ -749,7 +760,7 @@ const FacultyListPage: React.FC = () => {
 
       // Cover page
       const coverFilters: string[] = [];
-      if (isAdmin() && departmentFilter !== "all") coverFilters.push(`Department: ${departmentFilter}`);
+      if ((isAdmin() || isHoD()) && departmentFilter !== "all") coverFilters.push(`Department: ${departmentFilter}`);
       if (timeframe !== "none") coverFilters.push(`Year: ${timeframe}`);
 
       const coverMetrics: { label: string; value: string; color: RGB }[] = [
@@ -890,7 +901,7 @@ const FacultyListPage: React.FC = () => {
         footer(p, totalPages, "IEEE Papers Report");
       }
 
-      const deptSuffix = isAdmin() && departmentFilter !== "all" ? `_${departmentFilter.replace(/\s+/g, "_")}` : "";
+      const deptSuffix = (isAdmin() || isHoD()) && departmentFilter !== "all" ? `_${departmentFilter.replace(/\s+/g, "_")}` : "";
       const yearSuffix = timeframe !== "none" ? `_${timeframe}` : "";
       doc.save(`FacultyPapers${deptSuffix}${yearSuffix}_IEEE.pdf`);
       setShowDownloadMenu(false);
