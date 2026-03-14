@@ -1,0 +1,192 @@
+/* ── Layout ──────────────────────────────────────────────────────────────── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+}
+
+/* ── Page header ─────────────────────────────────────────────────────────── */
+/* Back button sits on its own line ABOVE the title */
+.pageHeader {
+  margin-bottom: 20px;
+}
+
+.backRow {
+  margin-bottom: 10px;   /* space between back button and title */
+}
+
+.pageTitle {
+  font-size: 26px;
+  font-weight: 700;
+  color: #12183d;
+  margin: 0 0 4px;
+  letter-spacing: -0.3px;
+}
+
+.pageSubtitle {
+  font-size: 13.5px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ── Action bar — sits between page header and card ──────────────────────── */
+.actionBar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;   /* only Generate PDF on the right */
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+/* Generate PDF button */
+.reportBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 20px;
+  background: #12183d;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.reportBtn:hover:not(:disabled) {
+  background: #1e2a5a;
+}
+
+.reportBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  margin-bottom: 28px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #12183d;
+  color: #fff;
+  padding: 13px 20px;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.cardHeader svg {
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+.cardMeta {
+  margin-left: auto;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+}
+
+/* ── Card body ───────────────────────────────────────────────────────────── */
+.cardBody {
+  padding: 24px 22px 12px;
+}
+
+/* ── Table blocks ────────────────────────────────────────────────────────── */
+.tableBlock {
+  margin-bottom: 8px;
+}
+
+.tableBlockTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #12183d;
+  margin: 0 0 12px;
+}
+
+.footnote {
+  font-size: 11.5px;
+  color: #9ca3af;
+  font-style: italic;
+  margin: 8px 0 16px;
+}
+
+/* ── Section divider ─────────────────────────────────────────────────────── */
+.sectionDivider {
+  font-size: 15px;
+  font-weight: 700;
+  color: #12183d;
+  margin: 24px 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* ── Department grid ─────────────────────────────────────────────────────── */
+.deptGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+  padding-bottom: 20px;
+}
+
+.deptBlock {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.deptTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: #374151;
+  margin: 0;
+  padding: 9px 14px;
+}
+
+/* ── Empty / loading ─────────────────────────────────────────────────────── */
+.noData {
+  padding: 40px 32px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .container {
+    padding: 20px 14px 48px;
+  }
+
+  .pageTitle {
+    font-size: 21px;
+  }
+
+  .actionBar {
+    justify-content: stretch;
+  }
+
+  .reportBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cardBody {
+    padding: 16px 14px 8px;
+  }
+
+  .deptGrid {
+    grid-template-columns: 1fr;
+  }
+}

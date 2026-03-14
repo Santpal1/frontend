@@ -1,0 +1,701 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   FACULTY LIST PAGE — Refined Academic Dashboard
+   Typefaces: DM Serif Display (headings) · IBM Plex Sans (data/UI)
+   Palette: Deep navy · warm slate · muted gold · cream white
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* ── CSS Custom Properties ──────────────────────────────────────────────── */
+:root {
+  /* Core palette */
+  --navy:          #0d1f3c;
+  --navy-mid:      #1a2f52;
+  --navy-light:    #2c4470;
+  --slate:         #4a5568;
+  --slate-light:   #718096;
+  --gold:          #b8975a;
+  --gold-light:    #d4b07a;
+  --gold-pale:     #f5eddc;
+  --cream:         #faf8f4;
+  --cream-dark:    #f0ece3;
+  --white:         #ffffff;
+
+  /* Semantic */
+  --surface:       var(--white);
+  --surface-alt:   #f7f9fc;
+  --border:        #dce3ee;
+  --border-light:  #edf0f7;
+  --text-primary:  var(--navy);
+  --text-secondary:var(--slate);
+  --text-muted:    var(--slate-light);
+  --accent:        var(--gold);
+  --danger:        #c0392b;
+  --success:       #1a6b45;
+
+  /* Spacing scale */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Shape */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+  --radius-pill:999px;
+
+  /* Shadows */
+  --shadow-xs:  0 1px 3px rgba(13, 31, 60, 0.08);
+  --shadow-sm:  0 2px 8px rgba(13, 31, 60, 0.10);
+  --shadow-md:  0 4px 20px rgba(13, 31, 60, 0.12);
+  --shadow-lg:  0 8px 40px rgba(13, 31, 60, 0.14);
+  --shadow-xl:  0 16px 60px rgba(13, 31, 60, 0.16);
+
+  /* Typography */
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-ui:      'IBM Plex Sans', 'Helvetica Neue', sans-serif;
+
+  /* Transitions */
+  --ease:     cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --t-fast:   0.15s;
+  --t-mid:    0.25s;
+  --t-slow:   0.4s;
+}
+
+/* ── Global Reset ───────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-ui);
+  background: var(--cream);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── Page background texture ────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 10% 0%, rgba(44, 68, 112, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 90% 100%, rgba(184, 151, 90, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVBAR (Using shared-navbar from SharedPageStyles.css)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.faculty-navLogo {
+  height: 36px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MAIN CONTAINER
+   ═══════════════════════════════════════════════════════════════════════════ */
+.faculty-container {
+  max-width: 1420px;
+  width: 94%;
+  margin: 84px auto 48px;
+  padding: var(--space-8) var(--space-8) var(--space-10);
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  animation: pageEnter var(--t-slow) var(--ease-out) both;
+}
+
+/* ── Page Title ─────────────────────────────────────────────────────────── */
+.title {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--navy);
+  text-align: center;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
+  position: relative;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: var(--radius-pill);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FILTER BAR
+   ═══════════════════════════════════════════════════════════════════════════ */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  background: var(--surface-alt);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+}
+
+/* ── Dropdowns ──────────────────────────────────────────────────────────── */
+.dropdown {
+  height: 38px;
+  padding: 0 var(--space-4);
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%234a5568'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+
+.dropdown:hover {
+  border-color: var(--navy-light);
+}
+
+.dropdown:focus {
+  outline: none;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(13, 31, 60, 0.1);
+}
+
+.dropdown:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Criteria Button ────────────────────────────────────────────────────── */
+.criteria-button {
+  height: 38px;
+  padding: 0 var(--space-4);
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--surface);
+  border: 1px solid var(--navy-light);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: all var(--t-fast) var(--ease);
+  white-space: nowrap;
+}
+
+.criteria-button:hover {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+
+/* ── Criteria Inputs ────────────────────────────────────────────────────── */
+.criteria-inputs {
+  margin: 0 0 var(--space-5);
+  padding: var(--space-5);
+  background: var(--gold-pale);
+  border: 1px solid rgba(184, 151, 90, 0.3);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.criteria-inputs label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: var(--space-1);
+}
+
+.criteria-inputs input {
+  height: 38px;
+  padding: 0 var(--space-3);
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+}
+
+.criteria-inputs input:focus {
+  outline: none;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(13, 31, 60, 0.1);
+}
+
+/* ── Apply Button ───────────────────────────────────────────────────────── */
+.apply-button {
+  height: 38px;
+  padding: 0 var(--space-5);
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--navy);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: all var(--t-fast) var(--ease);
+  white-space: nowrap;
+}
+
+.apply-button:hover {
+  background: var(--navy-mid);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SEARCH BAR
+   ═══════════════════════════════════════════════════════════════════════════ */
+.search-bar {
+  margin-bottom: var(--space-6);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 380px;
+  height: 42px;
+  padding: 0 38px 0 var(--space-4);   /* right pad reserves space for the ❌ button */
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-primary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(13, 31, 60, 0.1);
+}
+
+/* ── Search clear (❌) button — stays inside the input box ─────────────── */
+.search-clear-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: color var(--t-fast) var(--ease);
+  padding: 0;
+  line-height: 1;
+}
+
+.search-clear-btn:hover {
+  color: var(--danger);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TABLE
+   ═══════════════════════════════════════════════════════════════════════════ */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.faculty-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  table-layout: auto;
+}
+
+/* ── Table Head ─────────────────────────────────────────────────────────── */
+.faculty-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.faculty-table thead tr {
+  background: var(--navy);
+}
+
+.faculty-table th {
+  padding: 13px 14px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 2px solid var(--gold);
+  user-select: none;
+}
+
+.faculty-table th:first-child {
+  border-left: 3px solid var(--gold);
+}
+
+/* Sortable column hover */
+.faculty-table th[style*="cursor: pointer"]:hover {
+  color: var(--gold-light);
+}
+
+/* ── Table Body ─────────────────────────────────────────────────────────── */
+.faculty-table tbody tr {
+  border-bottom: 1px solid var(--border-light);
+  transition: background var(--t-fast) var(--ease);
+}
+
+.faculty-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.faculty-table tbody tr:nth-child(even) {
+  background: var(--surface-alt);
+}
+
+.faculty-table tbody tr:hover {
+  background: rgba(13, 31, 60, 0.035);
+}
+
+/* Left border accent on hover */
+.faculty-table tbody tr:hover td:first-child {
+  border-left: 3px solid var(--gold);
+}
+
+.faculty-table td {
+  padding: 12px 14px;
+  color: var(--text-primary);
+  font-weight: 400;
+  vertical-align: middle;
+  line-height: 1.4;
+  border-left: 3px solid transparent;
+  transition: border-left-color var(--t-fast) var(--ease);
+}
+
+/* Faculty ID — monospace feel */
+.faculty-table td:first-child {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--slate);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Name column */
+.faculty-table td:nth-child(3) {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+/* Numeric data cells */
+.faculty-table td:nth-child(5),
+.faculty-table td:nth-child(6) {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  text-align: center;
+  color: var(--navy-mid);
+}
+
+/* ── Scopus IDs ─────────────────────────────────────────────────────────── */
+.scopus-ids {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 12.5px;
+  color: var(--slate);
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: help;
+}
+
+.scopus-ids .more-count {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--gold-pale);
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+}
+
+/* ── Fetch IDs Button ───────────────────────────────────────────────────── */
+.fetch-ids-button {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 var(--space-3);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--navy);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--t-fast) var(--ease);
+}
+
+.fetch-ids-button:hover {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+
+/* ── View Details Button ────────────────────────────────────────────────── */
+.view-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  padding: 0 var(--space-4);
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--navy);
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  transition: all var(--t-fast) var(--ease);
+  border: 1px solid transparent;
+}
+
+.view-button:hover {
+  background: var(--navy-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.view-button:active {
+  transform: scale(0.97);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STATUS STATES
+   ═══════════════════════════════════════════════════════════════════════════ */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--slate);
+  gap: var(--space-4);
+}
+
+.loading::before {
+  content: '';
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--border);
+  border-top-color: var(--navy);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-message {
+  padding: var(--space-4) var(--space-5);
+  background: #fdf2f2;
+  border: 1px solid rgba(192, 57, 43, 0.25);
+  border-left: 3px solid var(--danger);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--danger);
+}
+
+.no-records {
+  padding: var(--space-12) var(--space-8);
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-light);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECTION CONTAINER (used on parent pages)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.sectionContainer {
+  min-height: 100vh;
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .faculty-container {
+    padding: var(--space-6);
+  }
+
+  .faculty-table th,
+  .faculty-table td {
+    padding: 10px 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  .faculty-navbar {
+    padding: 0 var(--space-5);
+  }
+
+  .faculty-container {
+    width: 97%;
+    margin-top: 76px;
+    padding: var(--space-5);
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dropdown,
+  .criteria-button {
+    width: 100%;
+  }
+
+  .search-input {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .faculty-container {
+    width: 100%;
+    margin: 64px 0 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    padding: var(--space-4);
+  }
+
+  .title {
+    font-size: 1.7rem;
+  }
+
+  .faculty-table th,
+  .faculty-table td {
+    padding: 9px 8px;
+    font-size: 12.5px;
+  }
+
+  .view-button {
+    font-size: 10.5px;
+    padding: 0 var(--space-3);
+  }
+
+  .faculty-navLogo {
+    height: 28px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.search-input:focus-visible,
+.dropdown:focus-visible,
+.criteria-button:focus-visible,
+.apply-button:focus-visible,
+.view-button:focus-visible,
+.back-button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+@media (prefers-contrast: high) {
+  .faculty-table th {
+    color: var(--white);
+  }
+  .view-button {
+    border: 2px solid var(--white);
+  }
+}

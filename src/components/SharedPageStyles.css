@@ -1,0 +1,248 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   SHARED PAGE STYLES — Unified across all pages
+   Navbar with white header, consistent back button, and global styling
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* ── CSS Custom Properties (Shared Palette) ──────────────────────────────── */
+:root {
+  /* Core palette */
+  --navy:          #0d1f3c;
+  --navy-mid:      #1a2f52;
+  --navy-light:    #2c4470;
+  --slate:         #4a5568;
+  --slate-light:   #718096;
+  --gold:          #b8975a;
+  --gold-light:    #d4b07a;
+  --gold-pale:     #f5eddc;
+  --cream:         #faf8f4;
+  --cream-dark:    #f0ece3;
+  --white:         #ffffff;
+
+  /* Semantic */
+  --surface:       var(--white);
+  --surface-alt:   #f7f9fc;
+  --border:        #dce3ee;
+  --border-light:  #edf0f7;
+  --text-primary:  var(--navy);
+  --text-secondary:var(--slate);
+  --text-muted:    var(--slate-light);
+  --accent:        var(--gold);
+  --danger:        #c0392b;
+  --success:       #1a6b45;
+
+  /* Spacing scale */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Shape */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+  --radius-pill:999px;
+
+  /* Shadows */
+  --shadow-xs:  0 1px 3px rgba(13, 31, 60, 0.08);
+  --shadow-sm:  0 2px 8px rgba(13, 31, 60, 0.10);
+  --shadow-md:  0 4px 20px rgba(13, 31, 60, 0.12);
+  --shadow-lg:  0 8px 40px rgba(13, 31, 60, 0.14);
+  --shadow-xl:  0 16px 60px rgba(13, 31, 60, 0.16);
+
+  /* Typography */
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-ui:      'IBM Plex Sans', 'Helvetica Neue', sans-serif;
+
+  /* Transitions */
+  --ease:     cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --t-fast:   0.15s;
+  --t-mid:    0.25s;
+  --t-slow:   0.4s;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   SHARED NAVBAR — White Header
+   ────────────────────────────────────────────────────────────────────────── */
+.shared-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-8);
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(13, 31, 60, 0.08);
+}
+
+/* Navy accent line at bottom */
+.shared-navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--navy) 0%, var(--gold-light) 50%, var(--navy) 100%);
+  background-size: 200% 100%;
+}
+
+.shared-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--navy);
+  letter-spacing: 0.02em;
+  transition: opacity var(--t-fast) var(--ease);
+  text-decoration: none;
+}
+
+.shared-logo:hover {
+  opacity: 0.75;
+}
+
+.shared-logo span {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.shared-nav-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   SHARED BACK BUTTON
+   ────────────────────────────────────────────────────────────────────────── */
+.shared-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: transparent;
+  color: var(--slate);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all var(--t-fast) var(--ease);
+  text-decoration: none;
+}
+
+.shared-back-button:hover {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+  transform: translateX(-2px);
+}
+
+.shared-back-button:active {
+  transform: translateX(-1px);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   SHARED PAGE CONTAINER
+   ────────────────────────────────────────────────────────────────────────── */
+.shared-page-wrapper {
+  min-height: 100vh;
+  background: var(--cream);
+  padding-top: 64px;
+}
+
+.shared-container {
+  max-width: 1420px;
+  width: 94%;
+  margin: 32px auto 48px;
+  padding: var(--space-8);
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  animation: sharedPageEnter var(--t-slow) var(--ease-out) both;
+}
+
+@keyframes sharedPageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   PAGE TITLE
+   ────────────────────────────────────────────────────────────────────────── */
+.shared-page-title {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--navy);
+  text-align: center;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
+  position: relative;
+}
+
+.shared-page-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: var(--radius-pill);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   UTILITY CLASSES
+   ────────────────────────────────────────────────────────────────────────── */
+.header-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.5;
+}

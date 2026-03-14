@@ -1,0 +1,1279 @@
+/* Page Wrapper */
+.faculty-detail-page-wrapper {
+  max-width: 1200px;
+  background: linear-gradient(135deg, #f3f4f6, #e8f4f8);
+}
+
+/* Navbar is now using shared-navbar from SharedPageStyles.css */
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
+}
+
+.faculty-navLogo {
+  height: 50px;
+  margin-right: 12px;
+  vertical-align: middle;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.faculty-navLogo:hover {
+  transform: rotate(5deg) scale(1.1);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.back-icon {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.back-button-header:hover .back-icon {
+  transform: translateX(-3px);
+}
+
+/* Main Container */
+.faculty-detail-container {
+  max-width: 1400px;
+  margin: 84px auto 48px;
+  padding: 2rem;
+  background: var(--surface);
+  border-radius: 16px;
+  border: 1px solid #dce3ee;
+  box-shadow: 0 4px 16px rgba(13, 31, 60, 0.1);
+}
+
+/* Back Button in Main Container */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #1A4D6C 0%, #163b4d 100%);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(26, 77, 108, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.back-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.back-button:hover::before {
+  left: 100%;
+}
+
+.back-button:hover {
+  background: linear-gradient(135deg, #163b4d 0%, #1A4D6C 100%);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(26, 77, 108, 0.5);
+}
+
+/* Faculty Card with Two-Column Layout */
+.faculty-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+  border-radius: 24px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 20px 40px rgba(26, 77, 108, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faculty-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1A4D6C, #6ca0dc, #1A4D6C);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.faculty-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 32px 64px rgba(26, 77, 108, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Two-Column Layout */
+.faculty-card-layout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Faculty Info - Left Side */
+.faculty-info {
+  flex: 1;
+}
+
+.faculty-name {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #1A4D6C, #2c5a7a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.2;
+}
+
+.faculty-info p {
+  margin: 0.8rem 0;
+  font-size: 1rem;
+  color: #2f4457;
+  line-height: 1.6;
+}
+
+.faculty-info p strong {
+  color: #1A4D6C;
+  font-weight: 600;
+}
+
+.filter-badges {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, #e8f4f8, #d4ebf2);
+  color: #0d47a1;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(26, 77, 108, 0.2);
+  transition: all 0.3s ease;
+}
+
+.filter-chip:hover {
+  background: linear-gradient(135deg, #d4ebf2, #b3dde8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 77, 108, 0.15);
+}
+
+.filter-chip button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.filter-chip button:hover {
+  transform: scale(1.2);
+}
+
+.faculty-bottom {
+  margin-top: 1.5rem;
+}
+
+.scopus-link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #1A4D6C, #2c5a7a);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 6px 16px rgba(26, 77, 108, 0.25);
+}
+
+.scopus-link-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(26, 77, 108, 0.35);
+  background: linear-gradient(135deg, #2c5a7a, #1A4D6C);
+}
+
+.faculty-actions {
+  margin-top: 1.5rem;
+}
+
+.generate-pdf-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 6px 16px rgba(46, 125, 50, 0.25);
+}
+
+.generate-pdf-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(46, 125, 50, 0.35);
+  background: linear-gradient(135deg, #388e3c, #2e7d32);
+}
+
+/* Quartile Summary - Right Side */
+.quartile-summary-section {
+  min-width: 280px;
+}
+
+.quartile-summary-table {
+  background: linear-gradient(135deg, rgba(26, 77, 108, 0.03), rgba(178, 235, 242, 0.05));
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(26, 77, 108, 0.1);
+  box-shadow: 0 4px 12px rgba(26, 77, 108, 0.08);
+}
+
+.quartile-summary-table h4 {
+  margin: 0 0 0.5rem 0;
+  color: #1A4D6C;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.quartile-summary-table select {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quartile-summary-table select:hover {
+  border-color: #1A4D6C;
+}
+
+.quartile-summary-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.quartile-summary-table tr {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.quartile-summary-table td {
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.quartile-summary-table td:first-child {
+  color: white;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.quartile-summary-table td:last-child {
+  text-align: right;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.quartile-summary-table tr.q1 td:first-child {
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+}
+
+.quartile-summary-table tr.q2 td:first-child {
+  background: linear-gradient(135deg, #fbc02d, #f9a825);
+}
+
+.quartile-summary-table tr.q3 td:first-child {
+  background: linear-gradient(135deg, #f57c00, #e65100);
+}
+
+.quartile-summary-table tr.q4 td:first-child {
+  background: linear-gradient(135deg, #d32f2f, #c62828);
+}
+
+.quartile-summary-table tr.q1 td:last-child {
+  background: linear-gradient(135deg, rgba(46, 125, 50, 0.15), rgba(27, 94, 32, 0.1));
+}
+
+.quartile-summary-table tr.q2 td:last-child {
+  background: linear-gradient(135deg, rgba(251, 192, 45, 0.15), rgba(249, 168, 37, 0.1));
+}
+
+.quartile-summary-table tr.q3 td:last-child {
+  background: linear-gradient(135deg, rgba(245, 124, 0, 0.15), rgba(230, 81, 0, 0.1));
+}
+
+.quartile-summary-table tr.q4 td:last-child {
+  background: linear-gradient(135deg, rgba(211, 47, 47, 0.15), rgba(198, 40, 40, 0.1));
+}
+
+.quartile-summary-table tr:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(26, 77, 108, 0.15);
+}
+
+.quartile-summary-table tr.selected {
+  box-shadow: 0 0 0 3px rgba(26, 77, 108, 0.3);
+  transform: scale(1.02);
+}
+
+/* Publications Section */
+.publications-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1A4D6C;
+  margin: 2.5rem 0 1.5rem 0;
+  text-align: center;
+  position: relative;
+}
+
+.publications-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #1A4D6C, #6ca0dc);
+  margin: 0.8rem auto 0;
+  border-radius: 2px;
+}
+
+.publication-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.publication-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+  border-radius: 16px;
+  padding: 1.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  border: 1px solid rgba(26, 77, 108, 0.1);
+  box-shadow: 0 4px 12px rgba(26, 77, 108, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.publication-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1A4D6C, #6ca0dc, #1A4D6C);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.publication-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(26, 77, 108, 0.15);
+  border-color: rgba(26, 77, 108, 0.2);
+}
+
+.publication-left {
+  flex: 1;
+}
+
+.publication-left h4 {
+  margin: 0 0 1rem 0;
+  color: #1A4D6C;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.publication-left p {
+  margin: 0.5rem 0;
+  color: #2f4457;
+  font-size: 0.95rem;
+}
+
+.publication-left p strong {
+  color: #1A4D6C;
+  font-weight: 600;
+}
+
+.quartile-badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  min-width: 150px;
+}
+
+.quartile-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.quartile-badge:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.quartile-badge.q1 {
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+}
+
+.quartile-badge.q2 {
+  background: linear-gradient(135deg, #fbc02d, #f9a825);
+}
+
+.quartile-badge.q3 {
+  background: linear-gradient(135deg, #f57c00, #e65100);
+}
+
+.quartile-badge.q4 {
+  background: linear-gradient(135deg, #d32f2f, #c62828);
+}
+
+.badge-icon {
+  font-style: normal;
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+.impact-factor-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+  flex-basis: 100%;
+}
+
+.impact-factor-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: white;
+  font-weight: 600;
+  font-size: 0.75rem;
+  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.2);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.impact-factor-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(124, 58, 237, 0.3);
+}
+
+.impact-factor-label {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  letter-spacing: 0.3px;
+  opacity: 0.9;
+}
+
+.impact-factor-value {
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+
+/* Chart Section */
+.full-history-control {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.full-history-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.switch {
+  position: relative;
+  width: 50px;
+  height: 26px;
+}
+
+.switch-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 26px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.switch-input:checked + .slider {
+  background-color: #1A4D6C;
+}
+
+.switch-input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.switch-label {
+  font-weight: 600;
+  color: #1A4D6C;
+}
+
+.highcharts-frame-container {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(26, 77, 108, 0.08);
+  border: 1px solid rgba(26, 77, 108, 0.1);
+}
+
+/* Loading and Error States */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 1.2rem;
+  color: #1A4D6C;
+  font-weight: 600;
+}
+
+.error-message {
+  background: linear-gradient(135deg, #ffebee, #ffcdd2);
+  color: #d32f2f;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  margin: 2rem auto;
+  max-width: 600px;
+  font-weight: 600;
+  border: 2px solid #ffcdd2;
+}
+
+.no-records {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+  padding: 3rem;
+  border-radius: 16px;
+  text-align: center;
+  color: #757575;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border: 2px dashed rgba(26, 77, 108, 0.2);
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .faculty-card-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .quartile-summary-section {
+    min-width: auto;
+  }
+  
+  .header-content {
+    max-width: 100%;
+    padding: 1rem 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .faculty-detail-container {
+    margin: 7rem auto 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .faculty-card {
+    padding: 2rem;
+  }
+  
+  .publication-card {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header-content {
+    gap: 1.5rem;
+    padding: 0.95rem 1.2rem;
+  }
+  
+  .faculty-detail-title {
+    font-size: 1.4rem;
+  }
+  
+  .faculty-name {
+    font-size: 1.8rem;
+  }
+  
+  .publication-card {
+    gap: 1.5rem;
+  }
+  
+  .faculty-detail-container {
+    margin: 7rem 1rem 1.5rem;
+    padding: 1.2rem;
+  }
+  
+  .faculty-card {
+    padding: 1.8rem;
+  }
+  
+  .back-button {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.9rem 1rem;
+  }
+  
+  .header-left {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+  }
+  
+  .faculty-logo {
+    font-size: 20px;
+  }
+  
+  .faculty-navLogo {
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .header-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .faculty-detail-title {
+    font-size: 1.2rem;
+  }
+  
+  .back-button-header {
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    gap: 6px;
+  }
+  
+  .back-icon {
+    font-size: 16px;
+  }
+  
+  .faculty-detail-container {
+    margin: 6.5rem 0.8rem 1rem;
+    padding: 1rem;
+  }
+  
+  .faculty-card {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 20px;
+  }
+  
+  .faculty-card-layout {
+    gap: 1.5rem;
+  }
+  
+  .faculty-name {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .faculty-info p {
+    font-size: 0.95rem;
+    margin: 0.6rem 0;
+  }
+  
+  .publication-card {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.2rem;
+  }
+  
+  .quartile-badge-container {
+    min-width: auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  .quartile-badge {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+  
+  .publications-title {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem 0;
+  }
+  
+  .filter-chip {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+  }
+  
+  .scopus-link-button,
+  .generate-pdf-button {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    width: fit-content;
+  }
+  
+  .highcharts-frame-container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .faculty-detail-page-wrapper {
+    background: linear-gradient(135deg, #f3f4f6, #e8f4f8);
+  }
+  
+  .header-content {
+    padding: 0.75rem 0.9rem;
+    gap: 0.8rem;
+  }
+  
+  .header-left {
+    gap: 1rem;
+  }
+  
+  .faculty-logo {
+    font-size: 18px;
+  }
+  
+  .faculty-navLogo {
+    height: 38px;
+    margin-right: 8px;
+  }
+  
+  .faculty-detail-container {
+    margin: 6rem 0.6rem 0.8rem;
+    padding: 0.8rem;
+  }
+  
+  .faculty-card {
+    padding: 1.2rem;
+    border-radius: 16px;
+  }
+  
+  .faculty-name {
+    font-size: 1.3rem;
+  }
+  
+  .filter-badges {
+    gap: 0.3rem;
+  }
+  
+  .publication-card {
+    padding: 1rem;
+  }
+  
+  .back-button {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .publication-left h4 {
+    font-size: 1.1rem;
+  }
+  
+  .publications-title {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .faculty-detail-header {
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    padding: 0.7rem 0.8rem;
+    gap: 0.6rem;
+  }
+  
+  .header-left {
+    width: 100%;
+    flex-direction: row;
+    gap: 0.8rem;
+  }
+  
+  .header-right {
+    width: 100%;
+  }
+  
+  .faculty-logo {
+    font-size: 16px;
+  }
+  
+  .faculty-navLogo {
+    height: 35px;
+    margin-right: 6px;
+  }
+  
+  .faculty-detail-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  
+  .back-button-header {
+    width: fit-content;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+  
+  .back-icon {
+    font-size: 14px;
+  }
+  
+  .faculty-detail-container {
+    margin: 5.5rem 0.5rem 0.5rem;
+    padding: 0.6rem;
+  }
+  
+  .faculty-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .faculty-name {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .faculty-info p {
+    font-size: 0.9rem;
+    margin: 0.4rem 0;
+  }
+  
+  .filter-badges {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+  
+  .filter-chip {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+  
+  .publications-title {
+    font-size: 1.3rem;
+    margin: 1.5rem 0 0.8rem 0;
+  }
+  
+  .publication-card {
+    padding: 0.8rem;
+    gap: 0.6rem;
+  }
+  
+  .publication-left h4 {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .publication-left p {
+    font-size: 0.9rem;
+    margin: 0.4rem 0;
+  }
+  
+  .quartile-summary-section {
+    min-width: 100%;
+  }
+  
+  .quartile-summary-table {
+    padding: 1rem;
+  }
+  
+  .quartile-summary-table h4 {
+    font-size: 0.95rem;
+  }
+  
+  .quartile-summary-table td {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .scopus-link-button,
+  .generate-pdf-button {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .quartile-badge {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    gap: 4px;
+  }
+  
+  .faculty-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .faculty-bottom {
+    margin-top: 1rem;
+  }
+  
+  .back-button {
+    width: 100%;
+    justify-content: center;
+    padding: 8px 14px;
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .faculty-detail-header {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .header-content {
+    padding: 0.6rem 0.5rem;
+  }
+  
+  .faculty-logo {
+    font-size: 15px;
+  }
+  
+  .faculty-navLogo {
+    height: 32px;
+  }
+  
+  .faculty-detail-title {
+    font-size: 1rem;
+  }
+  
+  .faculty-detail-container {
+    margin: 5rem 0.3rem 0.4rem;
+    padding: 0.4rem;
+  }
+  
+  .faculty-card {
+    padding: 0.8rem;
+  }
+  
+  .faculty-name {
+    font-size: 1.1rem;
+  }
+  
+  .publications-title {
+    font-size: 1.2rem;
+  }
+  
+  .publication-card {
+    padding: 0.7rem;
+  }
+  
+  .quartile-summary-table td {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .back-button {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .faculty-detail-header,
+  .faculty-card,
+  .publication-card,
+  .back-button-header,
+  .back-button,
+  .scopus-link-button,
+  .generate-pdf-button {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Focus states for accessibility */
+.header-content:focus-within,
+.back-button-header:focus,
+.back-button:focus,
+.scopus-link-button:focus,
+.generate-pdf-button:focus {
+  outline: 2px solid #1A4D6C;
+  outline-offset: 2px;
+}
+
+.faculty-table tbody tr:focus-within {
+  outline: 2px solid #1A4D6C;
+  outline-offset: -2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .faculty-detail-header {
+    border-bottom-width: 3px;
+  }
+  
+  .back-button-header,
+  .back-button,
+  .scopus-link-button,
+  .generate-pdf-button {
+    border: 2px solid currentColor;
+  }
+  
+  .faculty-card {
+    border-width: 2px;
+  }
+  
+  .publication-card {
+    border-width: 2px;
+  }
+}
+
+
+.type-summary-table {
+  background: linear-gradient(135deg, rgba(26, 77, 108, 0.03), rgba(178, 235, 242, 0.05));
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(26, 77, 108, 0.1);
+  box-shadow: 0 4px 12px rgba(26, 77, 108, 0.08);
+  margin-top: 1.5rem;
+}
+
+.type-summary-table h4 {
+  margin: 0 0 1rem 0;
+  color: #1A4D6C;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.type-summary-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.type-summary-table .type-row {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.type-summary-table td {
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.type-summary-table td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.type-summary-table td:last-child {
+  text-align: right;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.type-icon {
+  font-size: 1.2rem;
+}
+
+/* Different colors for each type */
+.type-summary-table .type-row.journal td:first-child {
+  background: linear-gradient(135deg, #1976d2, #1565c0);
+}
+
+.type-summary-table .type-row.conference td:first-child {
+  background: linear-gradient(135deg, #f57c00, #e65100);
+}
+
+.type-summary-table .type-row.book td:first-child {
+  background: linear-gradient(135deg, #7b1fa2, #6a1b9a);
+}
+
+.type-summary-table .type-row.journal td:last-child {
+  background: linear-gradient(135deg, rgba(25, 118, 210, 0.15), rgba(21, 101, 192, 0.1));
+}
+
+.type-summary-table .type-row.conference td:last-child {
+  background: linear-gradient(135deg, rgba(245, 124, 0, 0.15), rgba(230, 81, 0, 0.1));
+}
+
+.type-summary-table .type-row.book td:last-child {
+  background: linear-gradient(135deg, rgba(123, 31, 162, 0.15), rgba(106, 27, 154, 0.1));
+}
+
+.type-summary-table .type-row:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(26, 77, 108, 0.15);
+}
+
+.type-summary-table .type-row.selected {
+  box-shadow: 0 0 0 3px rgba(26, 77, 108, 0.3);
+  transform: scale(1.02);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .type-summary-table {
+    padding: 1.2rem;
+    margin-top: 1rem;
+  }
+
+  .type-summary-table h4 {
+    font-size: 1rem;
+  }
+
+  .type-summary-table td {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+
+  .type-icon {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .type-summary-table {
+    padding: 1rem;
+  }
+
+  .type-summary-table h4 {
+    font-size: 0.95rem;
+  }
+
+  .type-summary-table td {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  .type-icon {
+    font-size: 1rem;
+  }
+}

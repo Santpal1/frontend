@@ -1,0 +1,80 @@
+.analytics-navbar {
+    width: 100%;
+    background: #f3f4f6;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    animation: slideDown 0.3s ease-out;
+}
+
+
+.analytics-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+}
+
+.analytics-logo span {
+    color: #1A4D6C;
+}
+
+.analytics-navLogo {
+    height: 45px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Container */
+.analytics-container {
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 25px;
+    width: 60vw; /* Use viewport width */
+    max-width: none; /* Remove max-width restriction */
+    margin: 6rem auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeSlideIn 0.7s ease-out forwards;
+}
+
+
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 18px;
+    background: linear-gradient(135deg, #1A4D6C, #163b4d);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.5s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+    background: linear-gradient(135deg, #163b4d, #1A4D6C);
+    transform: translateY(-4px) scale(1.05);
+}
+
+/* Animation Keyframes */
+@keyframes fadeSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

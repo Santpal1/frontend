@@ -1,0 +1,790 @@
+/* =============================================
+   QUARTILE REPORT — Redesigned Module CSS
+   ============================================= */
+
+:root {
+    --navy:       #0d1f3c;
+    --gold:       #b8975a;
+    --gold-light: #f5ede0;
+    --blue:       #1d4ed8;
+    --blue-soft:  #eff6ff;
+    --text-dark:  #111827;
+    --text-mid:   #374151;
+    --text-muted: #6b7280;
+    --border:     #e5e7eb;
+    --bg-page:    #f1f4f8;
+    --white:      #ffffff;
+    --radius-sm:  6px;
+    --radius-md:  12px;
+    --radius-lg:  16px;
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-hover: 0 2px 8px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.08);
+    --transition: all 0.2s ease;
+}
+
+/* ── Page Wrapper ── */
+.pageWrapper {
+    min-height: 100vh;
+    background: var(--bg-page);
+    display: flex;
+    flex-direction: column;
+    padding-top: 64px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.navLogo {
+    height: 40px;
+    width: auto;
+    border-radius: 6px;
+}
+
+/* ── Outer white card — matches Paper-to-Faculty Ratio page ── */
+.container {
+    max-width: 1320px;
+    width: 100%;
+    margin: 2rem auto 3rem;
+    padding: 2.5rem 2.5rem 3rem;
+    flex: 1;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+/* ── Back Button ── */
+.backButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-mid);
+    text-decoration: none;
+    padding: 9px 18px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    background: var(--white);
+    transition: var(--transition);
+    margin-bottom: 2.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    letter-spacing: 0.01em;
+}
+
+.backButton:hover {
+    color: var(--navy);
+    border-color: #94a3b8;
+    background: var(--blue-soft);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transform: translateX(-2px);
+}
+
+/* ── Page Header ── */
+.pageHeader {
+    text-align: center;
+    padding: 1rem 0 2.5rem;
+}
+
+.headerEyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--gold-light);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+}
+
+.pageTitle {
+    font-size: 2.75rem;
+    font-weight: 400;
+    color: var(--navy);
+    font-family: 'DM Serif Display', Georgia, serif;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.1;
+}
+
+.pageSubtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin: 0;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ── Generic Card ── */
+.card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: #fafbfc;
+}
+
+.cardHeaderLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cardTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.cardSubtitle {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ── Filters Row ── */
+.filtersRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    align-items: flex-end;
+}
+
+.filterGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.searchGroup {
+    flex: 1;
+    min-width: 220px;
+}
+
+.filterLabel {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-mid);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.filterSelect {
+    height: 38px;
+    padding: 0 10px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    background: var(--white);
+    cursor: pointer;
+    transition: var(--transition);
+    min-width: 140px;
+}
+
+.filterSelect:hover { border-color: #9ca3af; }
+.filterSelect:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+/* ── Search Input ── */
+.searchInputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchIconInner {
+    position: absolute;
+    left: 10px;
+    font-size: 0.9rem;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.searchInput {
+    width: 100%;
+    height: 38px;
+    padding: 0 36px 0 32px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    background: var(--white);
+    transition: var(--transition);
+}
+
+.searchInput:hover { border-color: #9ca3af; }
+.searchInput:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+.clearSearch {
+    position: absolute;
+    right: 8px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.75rem;
+    padding: 2px 4px;
+    border-radius: 4px;
+    line-height: 1;
+}
+.clearSearch:hover { color: var(--text-dark); background: var(--border); }
+
+/* ── Download Button ── */
+.downloadButtonContainer {
+    position: relative;
+}
+
+.downloadButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.downloadButton:hover:not(:disabled) {
+    background: #162d52;
+    box-shadow: 0 4px 12px rgba(13, 31, 60, 0.25);
+}
+
+.downloadButton:disabled {
+    background: #d1d5db;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.chevron {
+    font-size: 0.65rem;
+    opacity: 0.7;
+}
+
+/* ── Download Dropdown Menu ── */
+.downloadMenu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    min-width: 280px;
+    overflow: hidden;
+    z-index: 999;
+    animation: menuDrop 0.15s ease-out;
+}
+
+@keyframes menuDrop {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.downloadMenuItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: var(--transition);
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.downloadMenuItem:last-child { border-bottom: none; }
+.downloadMenuItem:hover { background: var(--blue-soft); }
+
+.menuEmoji { font-size: 20px; flex-shrink: 0; }
+
+.menuTitle {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--text-dark);
+}
+
+.menuDesc {
+    font-size: 0.775rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+}
+
+/* ── Excel Button ── */
+.excelButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--white);
+    border: 1.5px solid #16a34a;
+    color: #16a34a;
+    border-radius: var(--radius-sm);
+    font-size: 0.825rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.excelButton:hover {
+    background: #f0fdf4;
+    box-shadow: 0 2px 8px rgba(22, 163, 74, 0.15);
+}
+
+/* ── Error Banner ── */
+.errorBanner {
+    margin: 0 1.5rem 1.25rem;
+    padding: 10px 14px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-left: 4px solid #ef4444;
+    border-radius: var(--radius-sm);
+    color: #dc2626;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* ── Table Scroll Wrapper ── */
+.tableScrollWrapper {
+    overflow-x: auto;
+    padding: 0;
+}
+
+/* ── Summary Stats Table ── */
+.statsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.statsTable thead {
+    background: #f9fafb;
+}
+
+.yearHeader {
+    padding: 12px 20px;
+    text-align: left;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    width: 120px;
+}
+
+.qHeader {
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.qBadge {
+    display: inline-block;
+    padding: 3px 14px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.statsRow {
+    transition: var(--transition);
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.statsRow:last-child { border-bottom: none; }
+
+.statsRow:hover { background: var(--blue-soft); }
+
+.yearCell {
+    padding: 14px 20px;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 0.95rem;
+}
+
+.statCell {
+    padding: 14px 16px;
+    text-align: center;
+}
+
+.statValue {
+    font-size: 1.05rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Faculty Table ── */
+.facultyTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.facultyTable thead {
+    background: #f9fafb;
+}
+
+.facultyTable th {
+    padding: 11px 16px;
+    text-align: left;
+    font-size: 0.775rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+.facultyRow {
+    border-bottom: 1px solid #f3f4f6;
+    transition: var(--transition);
+}
+
+.facultyRow:last-child { border-bottom: none; }
+.facultyRow:hover { background: var(--blue-soft); }
+
+.facultyTable td {
+    padding: 13px 16px;
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    vertical-align: middle;
+}
+
+.idCell {
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+
+.nameCell {
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.monoCell {
+    font-family: 'Courier New', monospace;
+    font-size: 0.825rem;
+    color: var(--text-muted);
+}
+
+.deptPill {
+    display: inline-block;
+    padding: 3px 10px;
+    background: #f3f4f6;
+    color: var(--text-mid);
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.countBadge {
+    display: inline-block;
+    min-width: 36px;
+    padding: 3px 10px;
+    background: var(--blue-soft);
+    color: var(--blue);
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.viewButton {
+    padding: 6px 14px;
+    background: var(--white);
+    color: var(--blue);
+    border: 1.5px solid var(--blue);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.viewButton:hover {
+    background: var(--blue);
+    color: var(--white);
+    box-shadow: 0 2px 8px rgba(29, 78, 216, 0.25);
+}
+
+/* ── Loading & Empty ── */
+.loadingState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 4rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #e5e7eb;
+    border-top-color: var(--blue);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 4rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.emptyIcon {
+    font-size: 2.5rem;
+    opacity: 0.5;
+}
+
+/* ── Modal ── */
+.modalBackdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(10, 20, 40, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.18s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.modal {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 800px;
+    max-height: 87vh;
+    display: flex;
+    flex-direction: column;
+    animation: modalUp 0.22s cubic-bezier(0.34, 1.4, 0.64, 1);
+    overflow: hidden;
+}
+
+@keyframes modalUp {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modalHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px 22px 16px;
+    border-bottom: 1px solid var(--border);
+    background: #fafbfc;
+    flex-shrink: 0;
+}
+
+.modalTitle {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 0 0 3px;
+}
+
+.modalSubtitle {
+    font-size: 0.825rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.closeBtn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 50%;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.closeBtn:hover { background: #fee2e2; color: #dc2626; }
+
+.modalBody {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 22px;
+}
+
+/* ── Paper Cards (Modal) ── */
+.paperCard {
+    display: flex;
+    gap: 14px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: #fafbfd;
+    transition: var(--transition);
+    margin-bottom: 10px;
+}
+
+.paperCard:last-child { margin-bottom: 0; }
+
+.paperCard:hover {
+    border-color: #bfdbfe;
+    background: var(--blue-soft);
+    box-shadow: 0 2px 8px rgba(29, 78, 216, 0.07);
+}
+
+.paperIdx {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+}
+
+.paperInfo {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.paperTitle {
+    font-size: 0.925rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.paperTitle a {
+    color: #1d4ed8;
+    text-decoration: none;
+}
+
+.paperTitle a:hover { text-decoration: underline; }
+
+.paperJournal {
+    font-size: 0.825rem;
+    color: var(--text-mid);
+    font-style: italic;
+    margin: 0;
+}
+
+.paperTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.typeTag {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #f3f4f6;
+    color: var(--text-mid);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.metaTag {
+    font-size: 0.775rem;
+    color: var(--text-muted);
+}
+
+.noPapers {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 3rem;
+    font-size: 0.9rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .container { padding: 1rem 1rem 2rem; }
+
+    .pageTitle { font-size: 2rem; }
+
+    .cardHeader { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+
+    .filtersRow { flex-direction: column; }
+
+    .filterSelect, .searchInput { width: 100%; }
+
+    .downloadMenu { min-width: 240px; }
+
+    .statsTable th, .statsTable td { padding: 10px 12px; }
+
+    .facultyTable th, .facultyTable td { padding: 10px 12px; font-size: 0.82rem; }
+
+    .modal { max-width: 95vw; }
+}
+
+@media (max-width: 480px) {
+    .container { padding: 0.75rem 0.75rem 2rem; }
+    .pageTitle { font-size: 1.75rem; }
+    .card { border-radius: var(--radius-md); }
+}

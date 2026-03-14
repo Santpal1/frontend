@@ -1,0 +1,459 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #1A4D6C;
+    text-decoration: none;
+}
+
+.navLogo {
+    height: 45px;
+    margin-right: 10px;
+}
+
+/* Container */
+.container {
+    max-width: 1100px;
+    width: 100%;
+    margin: 6rem auto;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    animation: zoomIn 0.8s ease-in-out;
+    position: relative;
+}
+
+/* Back Button */
+.backButton {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: linear-gradient(135deg, #1A4D6C, #163b4d);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.backButton:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #163b4d, #1A4D6C);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.backButton::before {
+    content: "←";
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Title */
+.title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1A4D6C;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    animation: fadeInUp 0.8s ease;
+}
+
+/* Counter number animation */
+.counter {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1A4D6C;
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+/* Top Authors */
+.topAuthor {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.topAuthor h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1A4D6C;
+    margin-bottom: 1rem;
+}
+
+.authorList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0 1rem;
+}
+
+/* Author Chip Animation */
+.authorChip {
+    background: rgba(26, 77, 108, 0.1);
+    color: #1A4D6C;
+    padding: 10px 18px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: default;
+    animation: fadeSlideIn 1s ease forwards;
+}
+
+/* Animation Keyframes */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Hover effect */
+.authorChip:hover {
+    background: rgba(26, 77, 108, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Publication Count Badge */
+.authorBadge {
+    background: #1A4D6C;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+
+/* KPI Cards */
+.kpiContainer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.kpiCard {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 220px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kpiCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.kpiCard h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.kpiCard p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1A4D6C;
+}
+
+/* Dropdown */
+.dropdown {
+    text-align: right;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+/* Styled Select */
+.select {
+    width: 175px;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    border: 2px solid #1A4D6C;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ffffff, #f7f9fc);
+    color: #1A4D6C;
+    appearance: none;
+    /* Removes default browser arrow */
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+/* Hover & Focus effects */
+.select:hover {
+    border-color: #163b4d;
+    background: linear-gradient(135deg, #f9fcff, #eef4f8);
+}
+
+.select:focus {
+    border-color: #1A4D6C;
+    box-shadow: 0 0 0 3px rgba(26, 77, 108, 0.2);
+}
+
+/* Custom Arrow */
+.dropdown::after {
+    content: "▼";
+    font-size: 14px;
+    color: #1A4D6C;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: transform 0.3s ease;
+}
+
+.select:focus+.dropdown::after,
+.select:hover+.dropdown::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+
+/* Chart */
+.chartContainer {
+    margin-bottom: 3rem;
+}
+
+.chartTitle {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #1A4D6C;
+    margin-bottom: 1rem;
+}
+
+.chartBox {
+    position: relative;
+    background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
+    padding: 2rem;
+    border-radius: 20px;
+    height: 22rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.chartBox:hover {
+    transform: scale(1.05);
+}
+
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    top: 10px;
+    /* Distance from the top of chartBox */
+    right: 15px;
+    /* Distance from the right of chartBox */
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    opacity: 0;
+    /* Initially hidden */
+}
+
+/* Show tooltip when bar is hovered */
+.showTooltip {
+    opacity: 1;
+}
+
+/* Bar hover effect */
+.bar {
+    transition: fill 0.3s ease;
+    cursor: pointer;
+}
+
+.bar:hover {
+    fill: #054768;
+    /* Highlight color when hovered */
+}
+
+
+/* Show tooltip when hovered */
+.chartBox:hover .tooltip {
+    opacity: 1;
+}
+
+/* Buttons */
+.buttonContainer {
+    text-align: center;
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 100%;
+    padding: 0 1rem;
+}
+
+.facultyBtn,
+.analyticsBtn,
+.performanceBtn,
+.monthlyReportBtn {
+    padding: 12px 24px;
+    font-size: 16px;
+    background: linear-gradient(135deg, #1A4D6C, #163b4d);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 0 1 auto;
+    min-width: 180px;
+    white-space: nowrap;
+}
+
+.facultyBtn:hover,
+.analyticsBtn:hover,
+.performanceBtn:hover,
+.monthlyReportBtn:hover {
+    transform: translateY(-4px) scale(1.05);
+    background: linear-gradient(135deg, #163b4d, #1A4D6C);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .kpiContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .select {
+        width: 100%;
+    }
+
+    .buttonContainer {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .facultyBtn,
+    .analyticsBtn,
+    .performanceBtn,
+    .monthlyReportBtn {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .backButton {
+        position: static;
+        margin-bottom: 1rem;
+        width: fit-content;
+    }
+
+    .title {
+        margin-top: 0;
+    }
+}
