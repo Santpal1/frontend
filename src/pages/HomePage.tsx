@@ -6,16 +6,16 @@ import logoImg from "../assets/srmist-logo.png";
 import "../components/SharedPageStyles.css";
 import styles from "../components/HomePage.module.css";
 import axios from 'axios';
-import { BookOpen, Globe2, Star, Clock, Mail, Building2, Users, FileText, Award, TrendingUp } from 'lucide-react';
+import { BookOpen, Globe2, Star, Clock, Mail, Building2, Users, FileText, Award, TrendingUp, Flame } from 'lucide-react';
 import { FaChartBar, FaBullseye, FaHandshake } from "react-icons/fa";
 import { useAuth } from "../contexts/AuthContext";
 
 // Hardcoded H-Index values per department (source: official records)
 const DEPT_H_INDEX: Record<string, number> = {
-    "C.Tech":  55,
-    "CINTEL":  49,
-    "DSBS":    39,
-    "NWC":     43,
+    "C.Tech": 55,
+    "CINTEL": 49,
+    "DSBS": 39,
+    "NWC": 43,
 };
 
 interface DepartmentStat {
@@ -31,6 +31,13 @@ interface TopCitedFaculty {
     faculty_name: string;
     citations: number;
     department: string;
+}
+
+interface EliteFaculty {
+    scopus_id: string;
+    faculty_name: string;
+    matched_journals: number;
+    journals: string[];
 }
 
 // Animation variants
@@ -127,7 +134,7 @@ const FacultyLandingPage = () => {
 
     useEffect(() => {
         const headers = getAuthHeaders();
-        axios.get('https://srm-sp-production.up.railway.app/api/homepage-stats', { headers })
+        axios.get('http://localhost:5001/api/homepage-stats', { headers })
             .then(({ data }) => {
                 if (data.departmentStats && data.departmentStats.length > 0) {
                     setDepartmentStats(data.departmentStats);
@@ -143,12 +150,13 @@ const FacultyLandingPage = () => {
 
                 const topCited: TopCitedFaculty | null = data.topCitedFaculty || null;
 
-                const stats = [
+                // ---- Build carousel stats ----
+                const stats: { title: string; description: string }[] = [
                     {
                         title: "Total Citations",
                         description: `${Number(data.totalCitations).toLocaleString()} citations received by our faculty publications.${topCited
-                                ? ` Top cited: ${topCited.faculty_name} (${Number(topCited.citations).toLocaleString()} citations, ${topCited.department}).`
-                                : ''
+                            ? ` Top cited: ${topCited.faculty_name} (${Number(topCited.citations).toLocaleString()} citations, ${topCited.department}).`
+                            : ''
                             }`,
                     },
                     {
@@ -166,15 +174,34 @@ const FacultyLandingPage = () => {
                     {
                         title: "Recent Publications (Last 1 Year)",
                         description: `${data.recentPublications} papers published in the last year.${data.topRecentFaculty
-                                ? ` Top contributor: ${data.topRecentFaculty.faculty_name} (${data.topRecentFaculty.paper_count} papers).`
-                                : ''
+                            ? ` Top contributor: ${data.topRecentFaculty.faculty_name} (${data.topRecentFaculty.paper_count} papers).`
+                            : ''
                             }`,
                     },
                     {
-                        title: "Top Journal",
-                        description: `${data.topJournal.publication_name} with ${data.topJournal.count} publications.`,
+                        title: "Top Journal (by Impact Factor)",
+                        description: `${data.topJournal.publication_name} (IF: ${data.topJournal.impact_factor.toFixed(3)}) with ${data.topJournal.count} publications.`,
                     },
                 ];
+
+                // ---- NEW: Top Impact Factor Journal stat ----
+                // Only add this carousel entry if the backend returned a valid journal
+                // (i.e., at least one paper exists in a journal with a verified IF).
+                const eliteFaculty: EliteFaculty[] = data.topIFJournal || [];
+                // ---- NEW: Elite Faculty (Top Journals) ----
+                if (eliteFaculty.length > 0) {
+                    eliteFaculty.slice(0, 3).forEach((fac) => {
+                        const journalsDisplay = fac.journals.slice(0, 3).join(', ');
+
+                        stats.push({
+                            title: "Top Impact Factor Publications",
+                            description:
+                                `${fac.faculty_name} has published in ${fac.matched_journals} top journals. ` +
+                                `Journals: ${journalsDisplay}${fac.journals.length > 3 ? ' & more' : ''}.`,
+                        });
+                    });
+                }
+
                 setCarouselStats(stats);
             })
             .catch(err => {
@@ -220,6 +247,7 @@ const FacultyLandingPage = () => {
         intervalRef.current = setInterval(() => { nextCarousel(); }, 3000);
     };
 
+    // ---- Icon list now has 7 entries to match the 7 possible carousel stats ----
     const statIcons = [
         <BookOpen size={28} key="icon-0" />,
         <Globe2 size={28} key="icon-1" />,
@@ -227,6 +255,7 @@ const FacultyLandingPage = () => {
         <Clock size={28} key="icon-3" />,
         <BookOpen size={28} key="icon-4" />,
         <Globe2 size={28} key="icon-5" />,
+        <Flame size={28} key="icon-6" />,
     ];
 
     return (
