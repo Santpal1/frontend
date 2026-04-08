@@ -25,7 +25,7 @@ const PasswordReset: React.FC<PasswordResetProps> = ({ onClose }) => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5001/api/password/reset-request', {
+      const response = await axios.post('http://srm-sp-production-dc63.up.railway.app/api/password/reset-request', {
         email
       });
 
@@ -65,7 +65,7 @@ const PasswordReset: React.FC<PasswordResetProps> = ({ onClose }) => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5001/api/password/reset', {
+      const response = await axios.post('http://srm-sp-production-dc63.up.railway.app/api/password/reset', {
         token,
         newPassword
       });

@@ -94,7 +94,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({ isOpen, onClo
       }
 
       const response = await axios.post(
-        'http://localhost:5001/api/password/change',
+        'http://srm-sp-production-dc63.up.railway.app/api/password/change',
         {
           currentPassword,
           newPassword,

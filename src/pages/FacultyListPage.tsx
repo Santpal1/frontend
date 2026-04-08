@@ -256,7 +256,7 @@ const FacultyListPage: React.FC = () => {
     const fetchAvailableDomains = async () => {
       try {
         const headers = getAuthHeaders();
-          const url = `https://srm-sp-production.up.railway.app/api/faculty/available-domains?department=${encodeURIComponent(departmentFilter)}`;
+          const url = `https://srm-sp-production-dc63.up.railway.app/api/faculty/available-domains?department=${encodeURIComponent(departmentFilter)}`;
         const response = await axios.get(url, { headers });
         if (response.data.success) {
           setAvailableDomains(response.data.data || []);
@@ -296,7 +296,7 @@ const FacultyListPage: React.FC = () => {
       const headers = getAuthHeaders();
       if ((isAdmin() || isHoD()) && departmentFilter && departmentFilter !== "all") params.department = departmentFilter;
 
-      const response = await axios.get("https://srm-sp-production.up.railway.app/api/faculty", { params, headers });
+      const response = await axios.get("https://srm-sp-production-dc63.up.railway.app/api/faculty", { params, headers });
       const depts = Array.from(
         new Set(response.data.filter((f: Faculty) => f.department).map((f: Faculty) => f.department))
       );
@@ -341,7 +341,7 @@ const FacultyListPage: React.FC = () => {
       if (criteriaPapers > 0)   params.papers = criteriaPapers;
       const headers = getAuthHeaders();
       if ((isAdmin() || isHoD()) && departmentFilter && departmentFilter !== "all") params.department = departmentFilter;
-      const response = await axios.get("https://srm-sp-production.up.railway.app/api/faculty/criteria-filter", { params, headers });
+      const response = await axios.get("https://srm-sp-production-dc63.up.railway.app/api/faculty/criteria-filter", { params, headers });
       const updated: Faculty[] = response.data
         .map((m: Faculty) => ({ ...m, docs_in_timeframe: m.timeframe_docs }))
         .sort((a: Faculty, b: Faculty) => (b.docs_in_timeframe ?? 0) - (a.docs_in_timeframe ?? 0));
@@ -369,7 +369,7 @@ const FacultyListPage: React.FC = () => {
       const params: Record<string, string> = {};
       if ((isAdmin() || isHoD()) && departmentFilter && departmentFilter !== "all") params.department = departmentFilter;
       const response = await axios.get(
-        `https://srm-sp-production.up.railway.app/api/faculty/papers?timeframe=${selectedTimeframe}`,
+        `https://srm-sp-production-dc63.up.railway.app/api/faculty/papers?timeframe=${selectedTimeframe}`,
         { headers, params }
       );
       const docsMap: Record<string, number> = {};
@@ -736,7 +736,7 @@ const FacultyListPage: React.FC = () => {
       if (timeframe !== "none") params.append("year", timeframe);
       const headers  = getAuthHeaders();
       const response = await axios.get(
-        `https://srm-sp-production.up.railway.app/api/faculty/papers-ieee/export?${params.toString()}`,
+        `https://srm-sp-production-dc63.up.railway.app/api/faculty/papers-ieee/export?${params.toString()}`,
         { headers }
       );
 
@@ -1319,7 +1319,7 @@ const FacultyListPage: React.FC = () => {
                             setScopusLoading(prev => ({ ...prev, [member.faculty_id]: true }));
                             const h   = getAuthHeaders();
                             const res = await axios.get(
-                              `https://srm-sp-production.up.railway.app/api/faculty/${member.faculty_id}`,
+                              `https://srm-sp-production-dc63.up.railway.app/api/faculty/${member.faculty_id}`,
                               { headers: h }
                             );
                             const ids: string[] =

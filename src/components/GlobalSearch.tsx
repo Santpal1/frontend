@@ -30,7 +30,7 @@ const GlobalSearch: React.FC = () => {
     setResults(null);
 
     try {
-      const response = await axios.get('http://localhost:5001/api/search/global', {
+      const response = await axios.get('http://srm-sp-production-dc63.up.railway.app/api/search/global', {
         params: { q: query.trim() }
       });
 

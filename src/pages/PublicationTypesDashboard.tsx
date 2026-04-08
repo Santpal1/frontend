@@ -32,7 +32,7 @@ export default function PublicationTypesDashboard() {
     const fetchDepartments = async () => {
         try {
             const headers = getAuthHeaders();
-            const res = await axios.get("https://srm-sp-production.up.railway.app/api/faculty", { headers });
+            const res = await axios.get("https://srm-sp-production-dc63.up.railway.app/api/faculty", { headers });
             const faculties = Array.isArray(res.data) ? res.data : [];
             const unique = Array.from(new Set(
                 faculties.map((f: any) => f.department).filter(Boolean)
@@ -48,7 +48,7 @@ export default function PublicationTypesDashboard() {
         setError("");
         try {
             const headers = getAuthHeaders();
-            let url = "https://srm-sp-production.up.railway.app/api/faculty/publication-types/list";
+            let url = "https://srm-sp-production-dc63.up.railway.app/api/faculty/publication-types/list";
             if (dept && dept !== "all" && isAdmin()) {
                 url += `?department=${encodeURIComponent(dept)}`;
             }
