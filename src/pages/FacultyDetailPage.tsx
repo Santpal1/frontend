@@ -391,7 +391,7 @@ const FacultyDetailPage: React.FC = () => {
       finally { setChartLoading(false); }
     };
     renderChart();
-  }, [id, sdgFilter, domainFilter, yearFilter, selectedQuartile, selectedType, criteriaStartFilter, criteriaEndFilter, fullHistory]);
+  }, [id, sdgFilter, domainFilter, yearFilter, selectedQuartile, selectedType, criteriaStartFilter, criteriaEndFilter, fullHistory, showFwciChart]);
 
   // ════════════════════════════════════════════════════════════════════════
   // PDF REPORT
